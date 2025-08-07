@@ -11,7 +11,26 @@ const Home: React.FC = () => {
   
   const  handleGenerateImage = async () => {
     console.log("Generating Images");
-    console.log(process.env.NEXT_PUBLIC_GPT_API_KEY);
+    setLoading(true);
+    const resp = await fetch('/api/generate-image', {
+      method: 'POST',
+      body: JSON.stringify({
+        prompt
+      }),
+      headers: {
+        'COntent-type': 'application/json'
+      }
+    })
+
+    if(!resp.ok) {
+      setLoading(false);
+      console.log(resp)
+      return;
+    }
+
+    const data = await resp.json();
+    console.log(data);
+    setLoading(false);
   };
 
 
@@ -28,6 +47,8 @@ const Home: React.FC = () => {
             <input 
               type="text" 
               id="promptInput" 
+              value={prompt}
+              onChange={(e) => setPrompt(e.target.value)}
               placeholder="Enter your prompt here..."
               className="w-full p-3 border border-gray-300 rounded-lg mb-4"
             />
@@ -36,11 +57,10 @@ const Home: React.FC = () => {
               onClick={handleGenerateImage}
             >
               {
-                /*
+                
                 isLoading ? "Loading..." : "Generate Image"
-                */
+                
               }
-              Generate Image
             </button>
           </div>
 
