@@ -20,7 +20,9 @@ const Home: React.FC = () => {
               placeholder="Enter your prompt here..."
               className="w-full p-3 border border-gray-300 rounded-lg mb-4"
             />
-            <button className="w-full p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200">
+            <button className="w-full p-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-200"
+              onClick={handleGenerateImage}
+            >
               Generate Image
             </button>
           </div>
