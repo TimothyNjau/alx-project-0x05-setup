@@ -25,7 +25,7 @@ const handler = async (request: NextApiRequest, response: NextApiResponse) => {
       headers: {
         "x-rapidapi-key": gptApiKey.trim(),
         "x-rapidapi-host": "chatgpt-42.p.rapidapi.com",
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
       },
     });
 
